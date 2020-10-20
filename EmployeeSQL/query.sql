@@ -98,15 +98,35 @@ SELECT *
 FROM "Employee Department Details";
 
 -- 5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
-
-
+CREATE VIEW "Hercules B% List" AS
+SELECT first_name, last_name, sex
+FROM employees
+WHERE first_name IN ('Hercules') AND last_name LIKE ('B%');
+--5. FINDINGS
+SELECT *
+FROM "Hercules B% List"
 
 -- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
-
-
+--6. FINDINGS
+SELECT *
+FROM "Employee Department Details"
+WHERE dept_name IN ('Sales');
 
 -- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
-
+--7. FINDINGS
+SELECT *
+FROM "Employee Department Details"
+WHERE dept_name IN ('Sales', 'Development');
 
 
 -- 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+--8. FINDINGS
+CREATE VIEW "Most Frequent Last Names" AS
+SELECT last_name, COUNT(last_name) AS "Frequency"
+FROM Employees
+GROUP BY last_name
+ORDER BY "Frequency" DESC;
+
+SELECT *
+FROM "Most Frequent Last Names"
+
